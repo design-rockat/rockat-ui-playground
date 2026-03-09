@@ -200,9 +200,9 @@ export default function ButtonPage() {
 
         <Section title="Icon Only">
           <Space>
-            <Button type="primary" icon={<Plus size={16} />} shape="circle" />
-            <Button type="default" icon={<Edit size={16} />} shape="circle" />
-            <Button type="dashed" icon={<Download size={16} />} shape="circle" />
+            <Button type="primary" icon={<Plus size={16} />} />
+            <Button type="default" icon={<Edit size={16} />} />
+            <Button type="dashed" icon={<Download size={16} />} />
           </Space>
         </Section>
 
