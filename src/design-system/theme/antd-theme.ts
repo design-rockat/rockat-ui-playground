@@ -19,6 +19,9 @@ export const rockatLightTheme = {
     colorTextSecondary: colors.neutral[600],
     colorBorder: colors.neutral[200],
     colorBorderSecondary: colors.neutral[100],
+    colorLink: colors.primary[700],
+    colorLinkHover: colors.primary[600],
+    colorLinkActive: colors.primary[800],
   },
   components: {
     Button: {
@@ -52,6 +55,9 @@ export const rockatDarkTheme = {
     colorTextSecondary: colors.neutral[400],
     colorBorder: "#2d2840",
     colorBorderSecondary: "#211d2e",
+    colorLink: colors.primary[400],
+    colorLinkHover: colors.primary[300],
+    colorLinkActive: colors.primary[500],
   },
   components: {
     Button: {

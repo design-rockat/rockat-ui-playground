@@ -4,8 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Space } from "antd";
-import { Star, MoreHorizontal, Heart, Users, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { Star, MoreHorizontal, Heart, Users } from "lucide-react";
 
 // ---------------------------------------------------------------------------
 // Variant Guide — ref: Atlassian Card, IBM Carbon Tile, MD3 Card variants
@@ -119,20 +118,16 @@ const usageRules: {
 ];
 
 function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="p-5 rounded-2xl transition-all duration-200 cursor-pointer"
+      className="group p-5 rounded-2xl cursor-pointer transition-all duration-200"
       style={{
         background: "var(--rockat-bg-elevated)",
-        border: `1px solid ${hovered ? "var(--rockat-primary-50)" : "var(--rockat-border)"}`,
+        border: "1px solid var(--rockat-border)",
       }}
     >
       <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+        className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 ease-out group-hover:scale-110"
         style={{ background: "var(--rockat-primary-50)" }}
       >
         {icon}
@@ -140,21 +135,6 @@ function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
       <p className="font-semibold text-sm" style={{ color: "var(--rockat-text)" }}>
         {title}
       </p>
-      <div style={{ minHeight: "28px" }} className="mt-3">
-        <div
-          className="transition-opacity duration-150"
-          style={{ opacity: hovered ? 1 : 0 }}
-        >
-          <Button
-            type="link"
-            icon={<ArrowRight size={14} />}
-            iconPosition="end"
-            className="!p-0 !h-auto text-xs font-medium"
-          >
-            Acessar
-          </Button>
-        </div>
-      </div>
     </div>
   );
 }
