@@ -59,10 +59,12 @@ const navItems: NavItem[] = [
 function NavItemComponent({
   item,
   collapsed,
+  onExpand,
   depth = 0,
 }: {
   item: NavItem;
   collapsed: boolean;
+  onExpand?: () => void;
   depth?: number;
 }) {
   const pathname = usePathname();
@@ -78,6 +80,10 @@ function NavItemComponent({
       return (
         <Tooltip title={item.label} placement="right">
           <button
+            onClick={() => {
+              onExpand?.();
+              setOpen(true);
+            }}
             className={cn(
               "w-full flex items-center justify-center p-2.5 rounded-xl transition-all duration-150",
               "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-text)] hover:bg-[var(--rockat-primary-50)]"
@@ -156,10 +162,12 @@ function SidebarContent({
   onClose,
   collapsed,
   onToggleCollapse,
+  onExpand,
 }: {
   onClose?: () => void;
   collapsed: boolean;
   onToggleCollapse?: () => void;
+  onExpand?: () => void;
 }) {
   return (
     <div
@@ -202,6 +210,7 @@ function SidebarContent({
             key={item.href ?? item.label}
             item={item}
             collapsed={collapsed}
+            onExpand={onExpand}
           />
         ))}
       </nav>
@@ -236,6 +245,7 @@ export function Sidebar() {
         <SidebarContent
           collapsed={collapsed}
           onToggleCollapse={() => setCollapsed(!collapsed)}
+          onExpand={() => setCollapsed(false)}
         />
       </aside>
 
