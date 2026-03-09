@@ -50,11 +50,11 @@ const navItems: NavItem[] = [
       { label: "Card", href: "/components/card", icon: <CreditCard size={14} /> },
       { label: "Toast", href: "/components/toast", icon: <Bell size={14} /> },
       { label: "Modal", href: "/components/modal", icon: <LayoutGrid size={14} /> },
+      { label: "Tables", href: "/tables", icon: <LayoutGrid size={14} /> },
     ],
   },
   { label: "Icons", href: "/icons", icon: <Lightbulb size={16} /> },
   { label: "Playground", href: "/playground", icon: <Grid3x3 size={16} /> },
-  { label: "Tables", href: "/tables", icon: <LayoutGrid size={16} /> },
 ];
 
 function NavItemComponent({
