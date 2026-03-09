@@ -36,7 +36,7 @@ export function Input({
         {...props}
       />
       {error && (
-        <p className="text-xs" style={{ color: "#ff4d4f" }}>
+        <p className="text-xs" style={{ color: "var(--rockat-danger-text)" }}>
           {error}
         </p>
       )}
