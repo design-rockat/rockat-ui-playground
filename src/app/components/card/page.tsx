@@ -6,6 +6,117 @@ import { Button } from "@/components/ui/button";
 import { Space } from "antd";
 import { Star, MoreHorizontal, Heart } from "lucide-react";
 
+// ---------------------------------------------------------------------------
+// Variant Guide — ref: Atlassian Card, IBM Carbon Tile, MD3 Card variants
+// ---------------------------------------------------------------------------
+
+const variantGuide: {
+  variant: string;
+  whenToUse: string;
+  example: string;
+  note?: string;
+}[] = [
+  {
+    variant: "default",
+    whenToUse: "Container neutro para a maioria dos contextos",
+    example: "Dashboard widgets, detalhe de item",
+  },
+  {
+    variant: "outlined",
+    whenToUse: "Destaque dentro de grids e listas — borda define o limite visual",
+    example: "Cards de equipe, projetos em grid",
+  },
+  {
+    variant: "filled",
+    whenToUse: "Destaque editorial com fundo colorido suave",
+    example: "Chamadas de ação, features em destaque",
+    note: "Use com moderação",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Content guidelines — ref: IBM Carbon, GitHub Primer, Atlassian DS
+// ---------------------------------------------------------------------------
+
+const contentRules: {
+  element: string;
+  rule: string;
+  good: string;
+  bad: string;
+}[] = [
+  {
+    element: "Title",
+    rule: "Substantivo ou frase curta — identifica a entidade do card",
+    good: "Projeto Alpha",
+    bad: "Detalhes importantes do projeto",
+  },
+  {
+    element: "Body",
+    rule: "Máx 2–3 linhas visíveis, truncar com ellipsis se maior",
+    good: "Descrição objetiva com 1–2 frases",
+    bad: "Parágrafos longos sem Read More",
+  },
+  {
+    element: "Extra",
+    rule: "Ações secundárias (ícone ou link) — não duplicar footer",
+    good: "Ícone de menu ou \"Ver mais\"",
+    bad: "Múltiplos CTAs no extra e no footer",
+  },
+  {
+    element: "Footer",
+    rule: "Ação primária do card — 1 a 2 botões no máximo",
+    good: "\"Abrir\" (primary) + \"Remover\" (text)",
+    bad: "3 ou mais botões de igual peso",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Usage guidelines — ref: IBM Carbon, Atlassian DS, MD3, GitHub Primer
+// ---------------------------------------------------------------------------
+
+const usageRules: {
+  type: "do" | "dont" | "caution";
+  rule: string;
+  detail: string;
+}[] = [
+  {
+    type: "do",
+    rule: "Um card = uma entidade — use como container de unidade de conteúdo",
+    detail:
+      "Cada card deve representar um único item, projeto, usuário ou conceito. Não misture entidades diferentes no mesmo card. Referência: Atlassian DS, MD3.",
+  },
+  {
+    type: "do",
+    rule: "Em grids, mantenha altura uniforme com align-stretch",
+    detail:
+      "Cards em grid devem ter a mesma altura. Use CSS Grid com align-items: stretch ou min-height consistente para evitar quebra visual. Referência: IBM Carbon.",
+  },
+  {
+    type: "dont",
+    rule: "Não anunture cards excessivamente — evite cards dentro de cards",
+    detail:
+      "No máximo 1 nível de aninhamento. Card > card > card cria hierarquia visual confusa e dificulta a leitura de informação. Referência: MD3.",
+  },
+  {
+    type: "dont",
+    rule: "Não use Card como substituto de tabela para dados tabulares",
+    detail:
+      "Se o conteúdo tem colunas e linhas comparação — use Table. Card é para entidades independentes, não para dados relacionados em linhas. Referência: IBM Carbon.",
+  },
+  {
+    type: "caution",
+    rule: "Cards clicáveis precisam de hover state e cursor pointer explícitos",
+    detail:
+      "Se o card inteiro é interativo, defina cursor: pointer + hover visual (shadow ou border). Sem feedback, o usuário não percebe a interatividade. Referência: Atlassian DS.",
+  },
+  {
+    type: "caution",
+    rule: "Para listas longas (>12 itens), prefira Table ou List ao invés de card grid",
+    detail:
+      "Grids de cards são ideais para até ~12 itens. Para listas longas paginadas, Table ou List oferecem scaneabilidade superior. Referência: GitHub Primer.",
+  },
+];
+
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-10">
@@ -26,7 +137,7 @@ export default function CardPage() {
           O componente{" "}
           <code
             className="font-mono text-sm px-1.5 py-0.5 rounded"
-            style={{ background: "var(--rockat-primary-100)", color: "var(--rockat-primary-700)" }}
+            style={{ background: "var(--rockat-accent-bg)", color: "var(--rockat-accent-text)" }}
           >
             Card
           </code>{" "}
@@ -88,7 +199,7 @@ export default function CardPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div
                     className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white"
-                    style={{ background: "var(--rockat-primary-600)" }}
+                    style={{ background: "var(--rockat-accent-text)", color: "white" }}
                   >
                     {team[0]}
                   </div>
@@ -106,6 +217,159 @@ export default function CardPage() {
             ))}
           </div>
         </Section>
+
+        {/* ── Variant Guide ─────────────────────────────────────────────── */}
+        <div className="mb-10">
+          <h2 className="text-base font-semibold mb-1" style={{ color: "var(--rockat-text)" }}>
+            Variant Guide
+          </h2>
+          <p className="text-sm mb-4" style={{ color: "var(--rockat-text-muted)" }}>
+            Qual variante usar em cada situação — referência: Atlassian Card, IBM Carbon Tile, MD3 Card.
+          </p>
+          <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid var(--rockat-border)" }}>
+            <div
+              className="grid px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wide gap-4"
+              style={{
+                gridTemplateColumns: "100px 1fr 1fr 110px",
+                background: "var(--rockat-bg-subtle)",
+                color: "var(--rockat-text-muted)",
+                borderBottom: "1px solid var(--rockat-border)",
+              }}
+            >
+              <span>Variante</span>
+              <span>Quando usar</span>
+              <span>Exemplos</span>
+              <span>Atenção</span>
+            </div>
+            {variantGuide.map((item, i) => (
+              <div
+                key={item.variant}
+                className="grid px-5 py-3 gap-4 items-start"
+                style={{
+                  gridTemplateColumns: "100px 1fr 1fr 110px",
+                  borderBottom: i < variantGuide.length - 1 ? "1px solid var(--rockat-border)" : undefined,
+                  background: i % 2 === 0 ? "var(--rockat-bg-subtle)" : "var(--rockat-bg-elevated)",
+                }}
+              >
+                <code
+                  className="text-[11px] font-mono px-1.5 py-0.5 rounded self-start"
+                  style={{ background: "var(--rockat-accent-bg)", color: "var(--rockat-accent-text)" }}
+                >
+                  {item.variant}
+                </code>
+                <span className="text-xs" style={{ color: "var(--rockat-text)" }}>{item.whenToUse}</span>
+                <span className="text-xs" style={{ color: "var(--rockat-text-muted)" }}>{item.example}</span>
+                <span
+                  className="text-[11px]"
+                  style={{ color: item.note ? "var(--rockat-warning-text)" : "transparent" }}
+                >
+                  {item.note ?? "—"}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Content Guidelines ───────────────────────────────────────── */}
+        <div className="mb-10">
+          <h2 className="text-base font-semibold mb-1" style={{ color: "var(--rockat-text)" }}>
+            Content Guidelines
+          </h2>
+          <p className="text-sm mb-4" style={{ color: "var(--rockat-text-muted)" }}>
+            Como escrever e estruturar cada elemento do card — referência: IBM Carbon, GitHub Primer, Atlassian DS.
+          </p>
+          <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid var(--rockat-border)" }}>
+            <div
+              className="grid px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wide gap-4"
+              style={{
+                gridTemplateColumns: "80px 1.2fr 1fr 1fr",
+                background: "var(--rockat-bg-subtle)",
+                color: "var(--rockat-text-muted)",
+                borderBottom: "1px solid var(--rockat-border)",
+              }}
+            >
+              <span>Elemento</span>
+              <span>Regra</span>
+              <span style={{ color: "var(--rockat-success-text)" }}>✓ Correto</span>
+              <span style={{ color: "var(--rockat-danger-text)" }}>✗ Evitar</span>
+            </div>
+            {contentRules.map((item, i) => (
+              <div
+                key={i}
+                className="grid px-5 py-3 gap-4 items-start"
+                style={{
+                  gridTemplateColumns: "80px 1.2fr 1fr 1fr",
+                  borderBottom: i < contentRules.length - 1 ? "1px solid var(--rockat-border)" : undefined,
+                  background: i % 2 === 0 ? "var(--rockat-bg-subtle)" : "var(--rockat-bg-elevated)",
+                }}
+              >
+                <code
+                  className="text-[11px] font-mono px-1.5 py-0.5 rounded self-start"
+                  style={{ background: "var(--rockat-accent-bg)", color: "var(--rockat-accent-text)" }}
+                >
+                  {item.element}
+                </code>
+                <span className="text-xs" style={{ color: "var(--rockat-text)" }}>{item.rule}</span>
+                <code
+                  className="text-[11px] font-mono px-1.5 py-0.5 rounded self-start"
+                  style={{ background: "var(--rockat-success-bg)", color: "var(--rockat-success-text)" }}
+                >
+                  {item.good}
+                </code>
+                <code
+                  className="text-[11px] font-mono px-1.5 py-0.5 rounded self-start"
+                  style={{ background: "var(--rockat-danger-bg)", color: "var(--rockat-danger-text)" }}
+                >
+                  {item.bad}
+                </code>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Usage Guidelines ──────────────────────────────────────────── */}
+        <div className="mb-10">
+          <h2 className="text-base font-semibold mb-1" style={{ color: "var(--rockat-text)" }}>
+            Usage Guidelines
+          </h2>
+          <p className="text-sm mb-4" style={{ color: "var(--rockat-text-muted)" }}>
+            Boas práticas baseadas em IBM Carbon, Atlassian DS, MD3 e GitHub Primer.
+          </p>
+          <div className="space-y-3">
+            {usageRules.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3 p-4 rounded-xl"
+                style={{ background: "var(--rockat-bg-elevated)", border: "1px solid var(--rockat-border)" }}
+              >
+                <span
+                  className="mt-0.5 flex-shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide"
+                  style={{
+                    background:
+                      item.type === "do"   ? "var(--rockat-success-bg)" :
+                      item.type === "dont" ? "var(--rockat-danger-bg)"  :
+                                             "var(--rockat-warning-bg)",
+                    color:
+                      item.type === "do"   ? "var(--rockat-success-text)" :
+                      item.type === "dont" ? "var(--rockat-danger-text)"  :
+                                             "var(--rockat-warning-text)",
+                  }}
+                >
+                  {item.type === "do" ? "Do" : item.type === "dont" ? "Don't" : "Atenção"}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold mb-0.5" style={{ color: "var(--rockat-text)" }}>
+                    {item.rule}
+                  </p>
+                  <p className="text-xs" style={{ color: "var(--rockat-text-muted)" }}>
+                    {item.detail}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </>
   );
