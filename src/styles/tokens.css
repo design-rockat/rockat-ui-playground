@@ -1,0 +1,49 @@
+:root {
+  /* Primary Palette */
+  --rockat-primary-50:  #f5f0ff;
+  --rockat-primary-100: #ede4ff;
+  --rockat-primary-200: #ddcdff;
+  --rockat-primary-300: #c5a5ff;
+  --rockat-primary-400: #ab72ff;
+  --rockat-primary-500: #943aff;
+  --rockat-primary-600: #8c12ff;
+  --rockat-primary-700: #8001ff;
+  --rockat-primary-800: #6600cc;
+  --rockat-primary-900: #5902b0;
+  --rockat-primary-950: #350078;
+
+  /* Neutral Palette */
+  --rockat-neutral-50:  #fafafa;
+  --rockat-neutral-100: #f5f5f5;
+  --rockat-neutral-200: #e5e5e5;
+  --rockat-neutral-300: #d4d4d4;
+  --rockat-neutral-400: #a3a3a3;
+  --rockat-neutral-500: #737373;
+  --rockat-neutral-600: #525252;
+  --rockat-neutral-700: #404040;
+  --rockat-neutral-800: #262626;
+  --rockat-neutral-900: #171717;
+  --rockat-neutral-950: #0a0a0a;
+
+  /* Semantic tokens - Light Mode */
+  --rockat-bg:          #ffffff;
+  --rockat-bg-subtle:   #f9f8ff;
+  --rockat-bg-elevated: #ffffff;
+  --rockat-text:        #171717;
+  --rockat-text-muted:  #525252;
+  --rockat-border:      #e5e5e5;
+  --rockat-sidebar-bg:  #faf9ff;
+  --rockat-sidebar-border: #ede4ff;
+}
+
+[data-theme="dark"] {
+  /* Semantic tokens - Dark Mode */
+  --rockat-bg:          #13111c;
+  --rockat-bg-subtle:   #1a1625;
+  --rockat-bg-elevated: #211d2e;
+  --rockat-text:        #f0ecff;
+  --rockat-text-muted:  #a3a3a3;
+  --rockat-border:      #2d2840;
+  --rockat-sidebar-bg:  #0f0d18;
+  --rockat-sidebar-border: #2d2840;
+}
