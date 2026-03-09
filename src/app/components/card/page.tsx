@@ -4,7 +4,8 @@ import { Header } from "@/components/layout/Header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Space } from "antd";
-import { Star, MoreHorizontal, Heart, Users } from "lucide-react";
+import { Star, MoreHorizontal, Heart, Users, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 // ---------------------------------------------------------------------------
 // Variant Guide — ref: Atlassian Card, IBM Carbon Tile, MD3 Card variants
@@ -118,23 +119,46 @@ const usageRules: {
 ];
 
 function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div
-      className="group p-5 rounded-2xl cursor-pointer transition-all duration-200"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="p-5 rounded-2xl cursor-pointer transition-all duration-200"
       style={{
         background: "var(--rockat-bg-elevated)",
-        border: "1px solid var(--rockat-border)",
+        border: `1px solid ${hovered ? "var(--rockat-primary-50)" : "var(--rockat-border)"}`,
       }}
     >
       <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 ease-out group-hover:scale-110"
-        style={{ background: "var(--rockat-primary-50)" }}
+        className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 ease-out"
+        style={{
+          background: "var(--rockat-icon-bg)",
+          color: "var(--rockat-icon-color)",
+          transform: hovered ? "scale(1.12)" : "scale(1)",
+        }}
       >
         {icon}
       </div>
-      <p className="font-semibold text-sm" style={{ color: "var(--rockat-text)" }}>
+
+      <p className="font-semibold text-sm mb-3" style={{ color: "var(--rockat-menu-text)" }}>
         {title}
       </p>
+
+      <div style={{ minHeight: 22 }}>
+        <div style={{ transition: "opacity 160ms, transform 160ms", opacity: hovered ? 1 : 0, transform: hovered ? "translateY(0)" : "translateY(-4px)" }}>
+          <Button
+            type="link"
+            icon={<ArrowRight size={14} />}
+            iconPosition="end"
+            className="!p-0 !h-auto text-xs font-medium"
+            style={{ color: "var(--rockat-accent-text)" }}
+          >
+            Acessar
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

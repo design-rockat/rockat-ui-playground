@@ -40,6 +40,11 @@
   --rockat-accent-border: #ede4ff;
   --rockat-accent-text:   #7c22d6;
 
+  /* Menu card / icon tokens (light) */
+  --rockat-icon-bg: var(--rockat-primary-50);
+  --rockat-icon-color: var(--rockat-accent-text);
+  --rockat-menu-text: var(--rockat-text);
+
   /* Nav / Sidebar hover */
   --rockat-nav-hover-bg:   #ede4ff;
   --rockat-nav-hover-text: #5902b0;
@@ -51,6 +56,9 @@
   --rockat-danger-text:   #b91c1c;
   --rockat-warning-bg:    #fef9c3;
   --rockat-warning-text:  #a16207;
+
+  /* Card filled background */
+  --rockat-card-filled-bg: #f5f0ff;
 }
 
 [data-theme="dark"] {
@@ -69,6 +77,11 @@
   --rockat-accent-border: #3d2d6b;
   --rockat-accent-text:   #c084fc;
 
+  /* Menu card / icon tokens (dark) */
+  --rockat-icon-bg: var(--rockat-primary-400);
+  --rockat-icon-color: var(--rockat-primary-50);
+  --rockat-menu-text: var(--rockat-primary-50);
+
   /* Nav / Sidebar hover - dark */
   --rockat-nav-hover-bg:   #2d2450;
   --rockat-nav-hover-text: #e9d5ff;
@@ -80,4 +93,7 @@
   --rockat-danger-text:   #f87171;
   --rockat-warning-bg:    #2a1a00;
   --rockat-warning-text:  #fbbf24;
+
+  /* Card filled background - dark */
+  --rockat-card-filled-bg: #350078;
 }
