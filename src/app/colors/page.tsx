@@ -158,7 +158,7 @@ function ColorCard({
         <p className="text-[10px] font-mono mt-0.5" style={{ color: "var(--rockat-text-muted)" }}>
           {hex}
         </p>
-        <p className="text-[10px] font-mono mt-0.5 truncate" style={{ color: "var(--rockat-primary-600)" }}>
+        <p className="text-[10px] font-mono mt-0.5 truncate" style={{ color: "var(--rockat-accent-text)" }}>
           {cssVar}
         </p>
       </div>
@@ -197,12 +197,12 @@ function TokenRow({
         onClick={handleCopy}
         title={`Copiar ${token.name}`}
       >
-        <code className="font-mono text-[10px] truncate" style={{ color: "var(--rockat-primary-700)" }}>
+        <code className="font-mono text-[10px] truncate" style={{ color: "var(--rockat-accent-text)" }}>
           {token.name}
         </code>
         <span className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
           {copied ? (
-            <Check size={10} style={{ color: "var(--rockat-primary-700)" }} />
+            <Check size={10} style={{ color: "var(--rockat-accent-text)" }} />
           ) : (
             <Copy size={10} style={{ color: "var(--rockat-text-muted)" }} />
           )}
@@ -251,7 +251,7 @@ export default function ColorsPage() {
               className="p-4 rounded-xl"
               style={{ background: "var(--rockat-bg-subtle)", border: "1px solid var(--rockat-border)" }}
             >
-              <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "var(--rockat-primary-700)" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "var(--rockat-accent-text)" }}>
                 Primitive tokens
               </p>
               <p className="text-sm" style={{ color: "var(--rockat-text-muted)" }}>
@@ -262,7 +262,7 @@ export default function ColorsPage() {
               className="p-4 rounded-xl"
               style={{ background: "var(--rockat-bg-subtle)", border: "1px solid var(--rockat-border)" }}
             >
-              <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "var(--rockat-primary-700)" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "var(--rockat-accent-text)" }}>
                 Semantic tokens
               </p>
               <p className="text-sm" style={{ color: "var(--rockat-text-muted)" }}>
@@ -279,9 +279,9 @@ export default function ColorsPage() {
           </h2>
           <p className="text-sm mb-8" style={{ color: "var(--rockat-text-muted)" }}>
             Escala base de cores. Do mais claro{" "}
-            <code className="text-[11px] font-mono px-1 py-0.5 rounded" style={{ background: "var(--rockat-primary-100)", color: "var(--rockat-primary-700)" }}>50</code>{" "}
+            <code className="text-[11px] font-mono px-1 py-0.5 rounded" style={{ background: "var(--rockat-accent-bg)", color: "var(--rockat-accent-text)" }}>50</code>{" "}
             ao mais escuro{" "}
-            <code className="text-[11px] font-mono px-1 py-0.5 rounded" style={{ background: "var(--rockat-primary-100)", color: "var(--rockat-primary-700)" }}>950</code>.{" "}
+            <code className="text-[11px] font-mono px-1 py-0.5 rounded" style={{ background: "var(--rockat-accent-bg)", color: "var(--rockat-accent-text)" }}>950</code>.{" "}
             Clique em qualquer swatch para copiar o CSS var.
           </p>
 
@@ -380,16 +380,16 @@ export default function ColorsPage() {
                   style={{
                     background:
                       item.type === "do"
-                        ? "#dcfce7"
+                        ? "var(--rockat-success-bg)"
                         : item.type === "dont"
-                        ? "#fee2e2"
-                        : "#fef9c3",
+                        ? "var(--rockat-danger-bg)"
+                        : "var(--rockat-warning-bg)",
                     color:
                       item.type === "do"
-                        ? "#15803d"
+                        ? "var(--rockat-success-text)"
                         : item.type === "dont"
-                        ? "#b91c1c"
-                        : "#a16207",
+                        ? "var(--rockat-danger-text)"
+                        : "var(--rockat-warning-text)",
                   }}
                 >
                   {item.type === "do" ? "Do" : item.type === "dont" ? "Don't" : "Atenção"}
@@ -411,11 +411,11 @@ export default function ColorsPage() {
         <div
           className="p-5 rounded-2xl"
           style={{
-            background: "var(--rockat-primary-50)",
-            border: "1px solid var(--rockat-primary-100)",
+            background: "var(--rockat-accent-bg)",
+            border: "1px solid var(--rockat-accent-border)",
           }}
         >
-          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--rockat-primary-700)" }}>
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--rockat-accent-text)" }}>
             Token principal do sistema
           </p>
           <div className="flex items-center gap-4">

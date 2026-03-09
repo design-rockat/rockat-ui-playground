@@ -34,6 +34,19 @@
   --rockat-border:      #e5e5e5;
   --rockat-sidebar-bg:  #faf9ff;
   --rockat-sidebar-border: #ede4ff;
+
+  /* Accent surface (callouts, highlights) */
+  --rockat-accent-bg:     #f5f0ff;
+  --rockat-accent-border: #ede4ff;
+  --rockat-accent-text:   #7c22d6;
+
+  /* Status tokens */
+  --rockat-success-bg:    #dcfce7;
+  --rockat-success-text:  #15803d;
+  --rockat-danger-bg:     #fee2e2;
+  --rockat-danger-text:   #b91c1c;
+  --rockat-warning-bg:    #fef9c3;
+  --rockat-warning-text:  #a16207;
 }
 
 [data-theme="dark"] {
@@ -46,4 +59,17 @@
   --rockat-border:      #2d2840;
   --rockat-sidebar-bg:  #0f0d18;
   --rockat-sidebar-border: #2d2840;
+
+  /* Accent surface - dark */
+  --rockat-accent-bg:     #1e1535;
+  --rockat-accent-border: #3d2d6b;
+  --rockat-accent-text:   #c084fc;
+
+  /* Status tokens - dark */
+  --rockat-success-bg:    #052e16;
+  --rockat-success-text:  #4ade80;
+  --rockat-danger-bg:     #2d0a0a;
+  --rockat-danger-text:   #f87171;
+  --rockat-warning-bg:    #2a1a00;
+  --rockat-warning-text:  #fbbf24;
 }
