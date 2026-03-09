@@ -32,6 +32,8 @@ export interface ButtonProps
   type?: AntButtonProps["type"];
   antSize?: AntButtonProps["size"];
   className?: string;
+  children?: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 export function Button({
@@ -41,15 +43,24 @@ export function Button({
   className,
   type,
   children,
+  icon,
   ...props
 }: ButtonProps) {
   const antType = type ?? (variant as AntButtonProps["type"]);
+
+  // Icon-only: no children, has icon
+  const isIconOnly = !!icon && !children;
 
   return (
     <AntButton
       type={antType}
       size={antSize}
-      className={cn(buttonVariants({ variant, size }), className)}
+      className={cn(
+        buttonVariants({ variant, size }),
+        className,
+        isIconOnly && "flex items-center justify-center p-0"
+      )}
+      icon={icon}
       {...props}
     >
       {children}
