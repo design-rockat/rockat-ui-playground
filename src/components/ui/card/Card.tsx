@@ -24,7 +24,7 @@ export function Card({
       )}
       style={
         variant === "filled"
-          ? { background: "var(--rockat-primary-50)" }
+          ? { background: "var(--rockat-card-filled-bg)" }
           : {}
       }
       {...props}

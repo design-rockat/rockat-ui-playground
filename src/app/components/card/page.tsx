@@ -128,7 +128,7 @@ function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
       className="p-5 rounded-2xl cursor-pointer transition-all duration-200"
       style={{
         background: "var(--rockat-bg-elevated)",
-        border: `1px solid ${hovered ? "var(--rockat-primary-900)" : "var(--rockat-border)"}`,
+        border: `1px solid ${hovered ? "var(--rockat-primary-700)" : "var(--rockat-primary-50)"}`,
       }}
     >
       <div
@@ -153,7 +153,7 @@ function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
             icon={<ArrowRight size={14} />}
             iconPosition="end"
             className="!p-0 !h-auto text-xs font-medium"
-            style={{ color: "var(--rockat-menu-text)" }}
+            style={{ color: "var(--rockat-primary-700)" }}
           >
             Acessar
           </Button>

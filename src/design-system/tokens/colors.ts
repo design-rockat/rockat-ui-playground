@@ -25,6 +25,32 @@ export const colors = {
     900: "#171717",
     950: "#0a0a0a",
   },
+  secondary: {
+    50: "#f3fff6",
+    100: "#e7ffed",
+    200: "#bfffd0",
+    300: "#8ef3a7",
+    400: "#4fe274",
+    500: "#20c24f",
+    600: "#17a73f",
+    700: "#0e8a30",
+    800: "#0a6726",
+    900: "#06491b",
+    950: "#03260f",
+  },
+  tertiary: {
+    50: "#fff7ef",
+    100: "#fff0e0",
+    200: "#ffd3b8",
+    300: "#ffb07f",
+    400: "#ff8a47",
+    500: "#ff5f1f",
+    600: "#e64d14",
+    700: "#bf3d0f",
+    800: "#8f2f0b",
+    900: "#5f1f07",
+    950: "#371203",
+  },
 } as const;
 
 export type ColorScale = keyof typeof colors.primary;

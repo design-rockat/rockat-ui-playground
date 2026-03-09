@@ -18,6 +18,8 @@ type ColorGroup = {
 const colorGroups: ColorGroup[] = [
   { name: "Primary", palette: colors.primary, cssPrefix: "--rockat-primary" },
   { name: "Neutral", palette: colors.neutral, cssPrefix: "--rockat-neutral" },
+  { name: "Secondary", palette: colors.secondary, cssPrefix: "--rockat-secondary" },
+  { name: "Tertiary", palette: colors.tertiary, cssPrefix: "--rockat-tertiary" },
 ];
 
 const semanticTokens = [
@@ -94,6 +96,18 @@ const usageRules = [
     rule: "Verifique contraste antes de colocar texto sobre cor",
     detail:
       "Texto branco sobre primary-400 ou mais claro falha WCAG AA. Use texto escuro (--rockat-text) em fundos primary-50 até primary-300.",
+  },
+  {
+    type: "do" as const,
+    rule: "Use secondary para estados positivos e confirmação",
+    detail:
+      "Cores secundárias são ideais para sucessos, confirmações e indicadores positivos. Use tokens semânticos mapeando a escala secondary (ex: --rockat-success-500).",
+  },
+  {
+    type: "do" as const,
+    rule: "Use tertiary com parcimônia como acento",
+    detail:
+      "Tertiary funciona como cor de destaque ou para estados específicos (warnings/alerts leves). Prefira criar tokens semânticos para intenções (success, warning, danger).",
   },
 ];
 
@@ -405,6 +419,20 @@ export default function ColorsPage() {
               </div>
             ))}
           </div>
+        </section>
+        {/* ── Quick Checklist ───────────────────────────────────────────── */}
+        <section className="mb-6">
+          <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--rockat-text)" }}>
+            Checklist rápido
+          </h2>
+          <ul className="text-sm" style={{ color: "var(--rockat-text-muted)", marginLeft: 12 }}>
+            <li>Primária: identidade e ações principais (botões, links, foco).</li>
+            <li>Neutra: superfícies, bordas, tipografia secundária e estrutura.</li>
+            <li>Secundária: estados positivos/confirmatórios e micro-interações.</li>
+            <li>Terciária: acentos e alertas leves; use com parcimônia para não competir com a identidade.</li>
+            <li>Sempre use tokens semânticos nos componentes (ex: --rockat-bg, --rockat-text).</li>
+            <li>Cheque contraste (WCAG) antes de aplicar texto sobre swatches coloridos.</li>
+          </ul>
         </section>
 
         {/* ── Primary Token Callout ─────────────────────────────────────── */}
