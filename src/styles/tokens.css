@@ -40,6 +40,10 @@
   --rockat-accent-border: #ede4ff;
   --rockat-accent-text:   #7c22d6;
 
+  /* Nav / Sidebar hover */
+  --rockat-nav-hover-bg:   #ede4ff;
+  --rockat-nav-hover-text: #5902b0;
+
   /* Status tokens */
   --rockat-success-bg:    #dcfce7;
   --rockat-success-text:  #15803d;
@@ -64,6 +68,10 @@
   --rockat-accent-bg:     #1e1535;
   --rockat-accent-border: #3d2d6b;
   --rockat-accent-text:   #c084fc;
+
+  /* Nav / Sidebar hover - dark */
+  --rockat-nav-hover-bg:   #2d2450;
+  --rockat-nav-hover-text: #e9d5ff;
 
   /* Status tokens - dark */
   --rockat-success-bg:    #052e16;

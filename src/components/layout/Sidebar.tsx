@@ -86,7 +86,7 @@ function NavItemComponent({
             }}
             className={cn(
               "w-full flex items-center justify-center p-2.5 rounded-xl transition-all duration-150",
-              "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-text)] hover:bg-[var(--rockat-primary-50)]"
+              "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-nav-hover-text)] hover:bg-[var(--rockat-nav-hover-bg)]"
             )}
           >
             {item.icon}
@@ -101,7 +101,7 @@ function NavItemComponent({
           onClick={() => setOpen(!open)}
           className={cn(
             "w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-150",
-            "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-text)] hover:bg-[var(--rockat-primary-50)]",
+            "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-nav-hover-text)] hover:bg-[var(--rockat-nav-hover-bg)]",
             open && "text-[var(--rockat-text)]"
           )}
         >
@@ -130,10 +130,10 @@ function NavItemComponent({
           className={cn(
             "flex items-center justify-center p-2.5 rounded-xl transition-all duration-150",
             isActive
-              ? "text-[var(--rockat-primary-700)]"
-              : "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-text)] hover:bg-[var(--rockat-primary-50)]"
+              ? "text-[var(--rockat-accent-text)]"
+              : "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-nav-hover-text)] hover:bg-[var(--rockat-nav-hover-bg)]"
           )}
-          style={isActive ? { background: "var(--rockat-primary-100)" } : {}}
+          style={isActive ? { background: "var(--rockat-accent-bg)" } : {}}
         >
           {item.icon}
         </Link>
@@ -148,9 +148,9 @@ function NavItemComponent({
         "flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-150",
         isActive
           ? "font-semibold"
-          : "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-text)] hover:bg-[var(--rockat-primary-50)]"
+          : "text-[var(--rockat-text-muted)] hover:text-[var(--rockat-nav-hover-text)] hover:bg-[var(--rockat-nav-hover-bg)]"
       )}
-      style={isActive ? { background: "var(--rockat-primary-100)", color: "var(--rockat-primary-700)" } : {}}
+      style={isActive ? { background: "var(--rockat-accent-bg)", color: "var(--rockat-accent-text)" } : {}}
     >
       {item.icon}
       {item.label}
@@ -193,7 +193,7 @@ function SidebarContent({
           <Tooltip title={collapsed ? "Expand sidebar" : "Collapse sidebar"} placement="right">
             <button
               onClick={onToggleCollapse}
-              className="p-2 rounded-xl transition-all duration-150 hover:bg-[var(--rockat-primary-50)]"
+              className="p-2 rounded-xl transition-all duration-150 hover:bg-[var(--rockat-nav-hover-bg)]"
               style={{ color: "var(--rockat-text-muted)" }}
               aria-label="Toggle sidebar"
             >
