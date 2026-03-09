@@ -32,9 +32,9 @@ export default function RootLayout({
         <AntdRegistry>
           <ThemeProvider>
             <FaviconSwitcher />
-            <div className="flex min-h-screen">
+            <div className="flex h-screen overflow-hidden">
               <Sidebar />
-              <main className="flex-1 min-w-0 overflow-auto">
+              <main className="flex-1 min-w-0 h-screen overflow-y-auto">
                 {children}
               </main>
             </div>
