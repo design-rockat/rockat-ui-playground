@@ -267,15 +267,15 @@ export default function CardPage() {
         <Section title="Rock-at Menu Card">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <MenuCard
-              icon={<Users size={18} style={{ color: "var(--rockat-accent-text)" }} />}
+              icon={<Users size={18} />}
               title="Recursos Humanos"
             />
             <MenuCard
-              icon={<Users size={18} style={{ color: "var(--rockat-accent-text)" }} />}
+              icon={<Users size={18} />}
               title="Financeiro"
             />
             <MenuCard
-              icon={<Users size={18} style={{ color: "var(--rockat-accent-text)" }} />}
+              icon={<Users size={18} />}
               title="Tecnologia"
             />
           </div>
