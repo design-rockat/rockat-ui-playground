@@ -128,7 +128,7 @@ function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
       className="p-5 rounded-2xl cursor-pointer transition-all duration-200"
       style={{
         background: "var(--rockat-bg-elevated)",
-        border: `1px solid ${hovered ? "var(--rockat-primary-50)" : "var(--rockat-border)"}`,
+        border: `1px solid ${hovered ? "var(--rockat-primary-900)" : "var(--rockat-border)"}`,
       }}
     >
       <div
