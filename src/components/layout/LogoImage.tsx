@@ -9,7 +9,8 @@ interface LogoImageProps {
   className?: string;
 }
 
-export function LogoImage({ width = 120, height = 32, className }: LogoImageProps) {
+// Native SVG dimensions: 323×59
+export function LogoImage({ width = 160, height = 29, className }: LogoImageProps) {
   const { isDark } = useThemeContext();
 
   return (
