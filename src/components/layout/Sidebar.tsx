@@ -54,6 +54,7 @@ const navItems: NavItem[] = [
   },
   { label: "Icons", href: "/icons", icon: <Lightbulb size={16} /> },
   { label: "Playground", href: "/playground", icon: <Grid3x3 size={16} /> },
+  { label: "Tables", href: "/tables", icon: <LayoutGrid size={16} /> },
 ];
 
 function NavItemComponent({
