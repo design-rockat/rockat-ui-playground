@@ -24,6 +24,7 @@ import {
   Menu,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { LogoImage } from "./LogoImage";
 
 type NavItem = {
   label: string;
@@ -148,21 +149,8 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     <div className="flex flex-col h-full px-4 py-6" style={{ background: "var(--rockat-sidebar-bg)" }}>
       {/* Logo */}
       <div className="flex items-center justify-between mb-8">
-        <Link href="/" className="flex items-center gap-2.5">
-          <div
-            className="w-8 h-8 rounded-xl flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: "linear-gradient(135deg, var(--rockat-primary-600), var(--rockat-primary-800))" }}
-          >
-            R
-          </div>
-          <div>
-            <div className="font-bold text-sm leading-tight" style={{ color: "var(--rockat-text)" }}>
-              Rock-at UI
-            </div>
-            <div className="text-xs" style={{ color: "var(--rockat-text-muted)" }}>
-              Design System
-            </div>
-          </div>
+        <Link href="/" className="flex items-center">
+          <LogoImage width={130} height={36} />
         </Link>
         {onClose && (
           <Button

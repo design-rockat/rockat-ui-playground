@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ThemeProvider } from "@/design-system/theme/provider";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { FaviconSwitcher } from "@/components/layout/FaviconSwitcher";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AntdRegistry>
           <ThemeProvider>
+            <FaviconSwitcher />
             <div className="flex min-h-screen">
               <Sidebar />
               <main className="flex-1 min-w-0 overflow-auto">
