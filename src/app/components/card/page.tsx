@@ -153,7 +153,7 @@ function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
             icon={<ArrowRight size={14} />}
             iconPosition="end"
             className="!p-0 !h-auto text-xs font-medium"
-            style={{ color: "var(--rockat-accent-text)" }}
+            style={{ color: "var(--rockat-menu-text)" }}
           >
             Acessar
           </Button>
