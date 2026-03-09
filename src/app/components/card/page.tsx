@@ -4,7 +4,8 @@ import { Header } from "@/components/layout/Header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Space } from "antd";
-import { Star, MoreHorizontal, Heart } from "lucide-react";
+import { Star, MoreHorizontal, Heart, Users, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 // ---------------------------------------------------------------------------
 // Variant Guide — ref: Atlassian Card, IBM Carbon Tile, MD3 Card variants
@@ -117,6 +118,47 @@ const usageRules: {
   },
 ];
 
+function MenuCard({ icon, title }: { icon: React.ReactNode; title: string }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="p-5 rounded-2xl transition-all duration-200 cursor-pointer"
+      style={{
+        background: "var(--rockat-bg-elevated)",
+        border: `1px solid ${hovered ? "var(--rockat-primary-50)" : "var(--rockat-border)"}`,
+      }}
+    >
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+        style={{ background: "var(--rockat-primary-50)" }}
+      >
+        {icon}
+      </div>
+      <p className="font-semibold text-sm" style={{ color: "var(--rockat-text)" }}>
+        {title}
+      </p>
+      <div style={{ minHeight: "28px" }} className="mt-3">
+        <div
+          className="transition-opacity duration-150"
+          style={{ opacity: hovered ? 1 : 0 }}
+        >
+          <Button
+            type="link"
+            icon={<ArrowRight size={14} />}
+            iconPosition="end"
+            className="!p-0 !h-auto text-xs font-medium"
+          >
+            Acessar
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-10">
@@ -187,7 +229,7 @@ export default function CardPage() {
               <p style={{ color: "var(--rockat-text-muted)" }}>Com borda visível.</p>
             </Card>
             <Card variant="filled" title="Variant: Filled">
-              <p style={{ color: "var(--rockat-text-muted)" }}>Com background preenchido em primary-50.</p>
+              <p style={{ color: "var(--rockat-text-muted)" }}>Fundo colorido suave — primary-50 no light, primary-950 no dark.</p>
             </Card>
           </Space>
         </Section>
@@ -215,6 +257,23 @@ export default function CardPage() {
                 </p>
               </Card>
             ))}
+          </div>
+        </Section>
+
+        <Section title="Rock-at Menu Card">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <MenuCard
+              icon={<Users size={18} style={{ color: "var(--rockat-accent-text)" }} />}
+              title="Recursos Humanos"
+            />
+            <MenuCard
+              icon={<Users size={18} style={{ color: "var(--rockat-accent-text)" }} />}
+              title="Financeiro"
+            />
+            <MenuCard
+              icon={<Users size={18} style={{ color: "var(--rockat-accent-text)" }} />}
+              title="Tecnologia"
+            />
           </div>
         </Section>
 
