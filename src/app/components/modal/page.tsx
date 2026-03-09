@@ -239,7 +239,7 @@ export default function ModalPage() {
               className="grid px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wide gap-4"
               style={{
                 gridTemplateColumns: "110px 1fr 80px 1fr",
-                background: "var(--rockat-bg-subtle)",
+                background: "var(--rockat-primary-50)",
                 color: "var(--rockat-text-muted)",
                 borderBottom: "1px solid var(--rockat-border)",
               }}
@@ -256,7 +256,7 @@ export default function ModalPage() {
                 style={{
                   gridTemplateColumns: "110px 1fr 80px 1fr",
                   borderBottom: i < typesGuide.length - 1 ? "1px solid var(--rockat-border)" : undefined,
-                  background: i % 2 === 0 ? "var(--rockat-bg-subtle)" : "var(--rockat-bg-elevated)",
+                  background: "var(--rockat-bg-elevated)",
                 }}
               >
                 <code
@@ -291,7 +291,7 @@ export default function ModalPage() {
               className="grid px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wide gap-4"
               style={{
                 gridTemplateColumns: "100px 1.2fr 1fr 1fr",
-                background: "var(--rockat-bg-subtle)",
+                background: "var(--rockat-primary-50)",
                 color: "var(--rockat-text-muted)",
                 borderBottom: "1px solid var(--rockat-border)",
               }}
@@ -308,7 +308,7 @@ export default function ModalPage() {
                 style={{
                   gridTemplateColumns: "100px 1.2fr 1fr 1fr",
                   borderBottom: i < contentRules.length - 1 ? "1px solid var(--rockat-border)" : undefined,
-                  background: i % 2 === 0 ? "var(--rockat-bg-subtle)" : "var(--rockat-bg-elevated)",
+                  background: "var(--rockat-bg-elevated)",
                 }}
               >
                 <code

@@ -161,7 +161,7 @@ function SpacingRow({ item, striped }: { item: typeof spacingItems[0]; striped: 
       style={{
         gridTemplateColumns: "36px 52px 64px 80px 1fr 1.8fr",
         borderBottom: "1px solid var(--rockat-border)",
-        background: striped ? "var(--rockat-bg-subtle)" : "var(--rockat-bg-elevated)",
+        background: "var(--rockat-bg-elevated)",
       }}
     >
       {/* Token key */}
@@ -279,7 +279,7 @@ export default function SpacingPage() {
               className="grid px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wide gap-4"
               style={{
                 gridTemplateColumns: "36px 52px 64px 80px 1fr 1.8fr",
-                background: "var(--rockat-bg-subtle)",
+                background: "var(--rockat-primary-50)",
                 color: "var(--rockat-text-muted)",
                 borderBottom: "1px solid var(--rockat-border)",
               }}

@@ -188,7 +188,7 @@ function TokenRow({
       className="group grid items-center px-4 py-3 text-xs gap-3"
       style={{
         gridTemplateColumns: "1fr 1fr 1fr 1.5fr",
-        background: striped ? "var(--rockat-bg-subtle)" : "var(--rockat-bg-elevated)",
+        background: "var(--rockat-bg-elevated)",
         borderTop: "1px solid var(--rockat-border)",
       }}
     >
@@ -337,7 +337,7 @@ export default function ColorsPage() {
                     className="grid px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wide gap-3"
                     style={{
                       gridTemplateColumns: "1fr 1fr 1fr 1.5fr",
-                      background: "var(--rockat-bg-subtle)",
+                      background: "var(--rockat-primary-50)",
                       color: "var(--rockat-text-muted)",
                     }}
                   >

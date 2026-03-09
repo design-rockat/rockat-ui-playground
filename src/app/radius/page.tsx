@@ -87,7 +87,7 @@ function RadiusRow({ item, striped }: { item: typeof radiusItems[0]; striped: bo
       style={{
         gridTemplateColumns: "48px 52px 116px 1fr 1.8fr",
         borderBottom: "1px solid var(--rockat-border)",
-        background: striped ? "var(--rockat-bg-subtle)" : "var(--rockat-bg-elevated)",
+        background: "var(--rockat-bg-elevated)",
       }}
     >
       {/* Preview swatch */}
@@ -194,7 +194,7 @@ export default function RadiusPage() {
               className="grid px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wide gap-4"
               style={{
                 gridTemplateColumns: "48px 52px 116px 1fr 1.8fr",
-                background: "var(--rockat-bg-subtle)",
+                background: "var(--rockat-primary-50)",
                 color: "var(--rockat-text-muted)",
                 borderBottom: "1px solid var(--rockat-border)",
               }}

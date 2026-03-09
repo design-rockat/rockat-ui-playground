@@ -199,7 +199,7 @@ export default function TypographyPage() {
                 style={{
                   gridTemplateColumns: "48px 1fr 80px 60px 1.8fr",
                   borderBottom: i < typeScaleItems.length - 1 ? "1px solid var(--rockat-border)" : "none",
-                  background: i % 2 === 0 ? "var(--rockat-bg-elevated)" : "var(--rockat-bg-subtle)",
+                  background: "var(--rockat-bg-elevated)",
                 }}
               >
                 <code className="text-[11px] font-mono" style={{ color: "var(--rockat-text-muted)" }}>
