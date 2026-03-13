@@ -10,6 +10,25 @@ Toda UI nova, alteração visual, refactor de interface ou componente reutilizá
 
 O Design System deve ser tratado como a interface visual preferencial e oficial do ecossistema. Implementações paralelas no módulo consumidor são exceção, não padrão.
 
+## Fonte local obrigatória no repo consumidor
+
+Para este arquivo funcionar bem com IA descontextualizada, o repositório consumidor deve conter uma cópia local de referência do Design System neste caminho padrão:
+
+- `.rockat-ds/src/index.ts`
+- `.rockat-ds/src/components/ui/*`
+- `.rockat-ds/src/design-system/*`
+- `.rockat-ds/src/styles/tokens.css`
+
+Se esse espelho local não existir, a IA perde a capacidade de inspecionar componentes, tokens e exports do sistema apenas com contexto local.
+
+Regra operacional:
+
+- antes de criar UI, a IA deve ler `plan.md`;
+- depois deve consultar `.rockat-ds/src/index.ts` para descobrir a superfície pública oficial;
+- em seguida deve inspecionar `.rockat-ds/src/components/ui`, `.rockat-ds/src/design-system` e `.rockat-ds/src/styles/tokens.css` para entender componentes, tema e tokens disponíveis.
+
+Se o módulo consumidor também tiver acesso a um repositório remoto ou pacote publicado do Design System, isso é complementar. A fonte local copiada continua sendo a referência mínima para agentes sem acesso externo.
+
 ## Regra de decisão obrigatória
 
 Ao receber uma tarefa de interface, a IA deve seguir esta ordem:
@@ -75,7 +94,10 @@ Se a solução local for inevitável, ela deve ser tratada como provisória até
 
 Ao trabalhar em qualquer módulo consumidor:
 
-- procurar primeiro o pacote, workspace ou path oficial do Design System;
+- procurar primeiro a cópia local em `.rockat-ds/`;
+- ler `.rockat-ds/src/index.ts` para identificar o que é API pública;
+- consultar `.rockat-ds/src/components/ui`, `.rockat-ds/src/design-system` e `.rockat-ds/src/styles/tokens.css` antes de propor componente novo;
+- procurar depois o pacote, workspace ou path oficial do Design System, se o repo consumidor também expuser isso;
 - usar os componentes e tokens exportados publicamente como superfície oficial;
 - evitar depender de internals, paths privados ou estrutura não documentada do DS;
 - manter naming, spacing, semântica e comportamento visual alinhados ao sistema;
@@ -92,12 +114,13 @@ Se a tarefa pedir “criar componente”, a IA deve primeiro responder intername
 
 Cada repositório que copiar este arquivo deve preencher os itens abaixo sem alterar as regras centrais acima.
 
+- caminho local da cópia do Design System: `.rockat-ds/`
 - pacote ou caminho oficial do Design System: `<preencher>`
 - forma oficial de import dos componentes/tokens: `<preencher>`
 - time ou responsável pelo Design System: `<preencher>`
 - fluxo para abrir lacuna, solicitar componente ou propor evolução: `<preencher>`
 
-Se essas informações não estiverem preenchidas, a IA ainda deve seguir a regra de procurar o DS antes de criar solução local.
+Se essas informações não estiverem preenchidas, a IA ainda deve seguir a regra de procurar o DS primeiro pela cópia local `.rockat-ds/` antes de criar solução local.
 
 ## Superfície pública e consumo seguro
 
@@ -111,6 +134,8 @@ Não deve:
 - acoplar o módulo consumidor a detalhes internos que podem mudar.
 
 Se algo necessário não estiver exposto pela superfície pública oficial, isso deve ser tratado como lacuna do Design System, não como convite automático para duplicação local.
+
+No cenário de cópia local, a referência oficial para isso é `.rockat-ds/src/index.ts`.
 
 ## Validação mínima esperada
 
