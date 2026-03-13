@@ -1,211 +1,155 @@
-# Rock-at UI Plan
+# Design System Usage Plan
 
-## O que este repositório é
+## Objetivo
 
-Este repositório é, hoje, um playground e uma documentação viva do Design System Rock-at construído com `Next.js App Router`. O foco atual não é uma biblioteca NPM fechada e pronta para distribuição, e sim uma base para evoluir:
+Este arquivo existe para ser copiado para repositórios consumidores do produto e orientar agentes de IA, engenheiros e automações a usar o Design System como fonte oficial da interface.
 
-- tokens de design reutilizáveis;
-- wrappers leves de componentes sobre `Ant Design`;
-- páginas de showcase para documentação visual e validação manual.
+Regra principal:
 
-Quem mexer aqui deve tratar o projeto primeiro como um ambiente de documentação e experimentação do design system. Se surgir uma mudança que puxe o repo para o papel de pacote distribuível, essa decisão precisa ser explícita e refletida na estrutura, nos scripts e na documentação.
+Toda UI nova, alteração visual, refactor de interface ou componente reutilizável deve usar componentes, tokens e padrões do Design System antes de considerar qualquer implementação local.
 
-## Stack atual
+O Design System deve ser tratado como a interface visual preferencial e oficial do ecossistema. Implementações paralelas no módulo consumidor são exceção, não padrão.
 
-O estado real do projeto hoje é:
+## Regra de decisão obrigatória
 
-- `Next.js 16`
-- `React 19`
-- `TypeScript`
-- `Tailwind CSS v4`
-- `Ant Design v6`
-- `lucide-react`
-- `class-variance-authority`
+Ao receber uma tarefa de interface, a IA deve seguir esta ordem:
 
-Referências úteis no código:
+1. procurar componente, token ou padrão já existente no Design System;
+2. verificar se a necessidade pode ser resolvida por composição com componentes existentes do Design System;
+3. se houver lacuna real, registrar a ausência e escalar a necessidade para evolução do Design System;
+4. só então considerar uma solução local, com justificativa explícita, temporária e limitada ao caso.
 
-- app e rotas: `src/app/*`
-- tokens TS: `src/design-system/tokens/*`
-- tokens CSS: `src/styles/tokens.css`
-- tema Ant Design: `src/design-system/theme/*`
-- componentes UI: `src/components/ui/*`
-- exports públicos atuais: `src/index.ts`
+Se o caso pertence claramente ao domínio visual do produto, a IA não deve começar criando CSS ad hoc, wrapper paralelo ou componente novo no módulo consumidor sem antes verificar o Design System.
 
-## Arquitetura atual
+## O que deve vir do Design System
 
-### 1. Tokens e semântica visual
+Por padrão, estes itens devem ser consumidos do Design System ou seguir seus tokens e padrões oficiais:
 
-Os valores-base do design system estão divididos em dois níveis:
+- botões;
+- inputs e campos de formulário;
+- cards e containers visuais recorrentes;
+- modais, drawers, toasts e feedback visual;
+- tabelas, listas e estruturas visuais reutilizáveis;
+- cores, tipografia, spacing, radius e demais tokens;
+- estados visuais como hover, active, disabled, error, success e warning;
+- padrões recorrentes de layout e composição visual.
 
-- tokens em TypeScript dentro de `src/design-system/tokens`
-- variáveis CSS em `src/styles/tokens.css`
+A IA deve evitar:
 
-As variáveis `--rockat-*` são a base visual compartilhada pelo app. Elas definem paletas, superfícies, texto, bordas, estados semânticos e diferenças entre tema claro e escuro.
+- criar segunda fonte de verdade para tokens;
+- duplicar componentes equivalentes aos do Design System;
+- copiar estilos manualmente em vez de reutilizar a abstração oficial;
+- introduzir variações visuais locais sem alinhamento com o sistema.
 
-Ao alterar estilo visual, a prioridade deve ser:
+## Quando exceção é aceitável
 
-1. reutilizar uma variável `--rockat-*` existente;
-2. reutilizar tokens TS já publicados;
-3. só então criar um token novo, se a necessidade for recorrente e fizer sentido para o sistema.
+Exceções só são aceitáveis quando a solução local não cria um padrão visual concorrente ao Design System.
 
-Evite espalhar valores hardcoded em páginas e componentes se esse valor representa uma decisão de design reaproveitável.
+Casos aceitáveis:
 
-### 2. Tema e modo claro/escuro
+- comportamento estritamente de negócio;
+- composição específica de fluxo sem valor de reutilização sistêmica;
+- adaptação temporária bloqueada por lacuna real do Design System;
+- integração técnica que não redefine o padrão visual central.
 
-O tema é aplicado por `ThemeProvider` em `src/design-system/theme/provider.tsx`, que:
+Mesmo nesses casos, a IA deve:
 
-- persiste o tema em `localStorage` com a chave `rockat-theme`;
-- aplica `data-theme` no `documentElement`;
-- sincroniza o tema do app com o `ConfigProvider` do Ant Design.
+- explicar por que o Design System não cobre a necessidade;
+- limitar o escopo da solução local;
+- evitar transformar a exceção em padrão visual reaproveitável;
+- registrar quando a solução deveria virar evolução do Design System.
 
-Os presets do Ant Design vivem em `src/design-system/theme/antd-theme.ts`.
+## Política obrigatória de exceção
 
-Regra prática: qualquer mudança de token visual relevante deve ser coerente tanto no modo `light` quanto no modo `dark`. Não introduza ajuste só para um tema se o outro tema ficar inconsistente.
+Se faltar componente, variante, token ou padrão visual necessário:
 
-### 3. Estrutura das páginas
+- não assumir que o módulo consumidor deve criar a solução definitiva;
+- não criar um substituto local permanente por conveniência;
+- registrar a lacuna de forma explícita;
+- recomendar evolução no Design System quando o caso tiver potencial de reuso;
+- só implementar localmente o mínimo necessário para destravar a entrega.
 
-As páginas em `src/app/*` funcionam como documentação viva do design system.
+Se a solução local for inevitável, ela deve ser tratada como provisória até existir cobertura oficial do Design System.
 
-Hoje elas cumprem três papéis:
+## Instruções diretas para IA
 
-- apresentar tokens como cores, tipografia, spacing e radius;
-- demonstrar componentes em páginas dedicadas;
-- oferecer um playground interativo para testar variações rapidamente.
+Ao trabalhar em qualquer módulo consumidor:
 
-Antes de concluir uma mudança visual ou de API em componente, o ideal é que exista uma página ou seção de showcase cobrindo esse comportamento.
+- procurar primeiro o pacote, workspace ou path oficial do Design System;
+- usar os componentes e tokens exportados publicamente como superfície oficial;
+- evitar depender de internals, paths privados ou estrutura não documentada do DS;
+- manter naming, spacing, semântica e comportamento visual alinhados ao sistema;
+- preferir composição com componentes oficiais em vez de reimplementação;
+- justificar no texto final qualquer desvio do Design System.
 
-### 4. Componentes UI
+Se a tarefa pedir “criar componente”, a IA deve primeiro responder internamente:
 
-Os componentes em `src/components/ui/*` são wrappers finos sobre primitives do `Ant Design`.
+- esse componente já existe no Design System?
+- essa necessidade pode ser resolvida por composição?
+- isso deveria ser uma evolução do Design System em vez de uma solução local?
 
-Padrão atual:
+## Integração local
 
-- `Button` reaproveita `AntButton` e adiciona ergonomia leve com `cva`;
-- `Input` reaproveita `AntInput` e adiciona `label`, `hint` e `error`;
-- `Card` reaproveita `AntCard` e adiciona variantes sem reinventar o componente-base;
-- `Table` é uma implementação própria simples, estilizada com tokens do sistema.
+Cada repositório que copiar este arquivo deve preencher os itens abaixo sem alterar as regras centrais acima.
 
-Ao criar novos componentes, prefira manter o mesmo modelo: encapsular o suficiente para alinhar tema, API e ergonomia do design system, mas sem duplicar complexidade já resolvida pelo `Ant Design`.
+- pacote ou caminho oficial do Design System: `<preencher>`
+- forma oficial de import dos componentes/tokens: `<preencher>`
+- time ou responsável pelo Design System: `<preencher>`
+- fluxo para abrir lacuna, solicitar componente ou propor evolução: `<preencher>`
 
-### 5. Superfície pública atual
+Se essas informações não estiverem preenchidas, a IA ainda deve seguir a regra de procurar o DS antes de criar solução local.
 
-Os exports centrais estão em `src/index.ts`. Hoje a superfície pública explícita é:
+## Superfície pública e consumo seguro
 
-- `Button`
-- `Input`
-- `Card`
-- `ThemeProvider`
-- `useThemeContext`
-- `rockatLightTheme`
-- `rockatDarkTheme`
-- `colors`
-- `spacing`
-- `radius`
-- `typography`
+A IA deve tratar apenas os componentes, tokens, hooks, temas e utilitários exportados oficialmente pelo Design System como API pública de consumo.
 
-Se um novo componente ou token precisar fazer parte da API pública do design system, ele deve ser exportado por esse arquivo.
+Não deve:
 
-## Convenções para futuras mudanças
+- importar arquivos internos sem necessidade explícita;
+- depender de estruturas privadas do pacote;
+- recriar localmente um equivalente já existente por preferência pessoal;
+- acoplar o módulo consumidor a detalhes internos que podem mudar.
 
-### Visual e styling
-
-- Reutilize `--rockat-*` e tokens existentes antes de criar novos valores.
-- Preserve coerência entre `light` e `dark`.
-- Mantenha a linguagem visual atual: superfícies suaves, bordas arredondadas e uso consistente dos tokens semânticos.
-- Evite hardcode visual repetido quando o valor puder virar token do sistema.
-
-### Componentização
-
-- Prefira wrappers leves sobre `Ant Design` quando isso mantiver consistência e reduzir duplicação.
-- Use `Ant Design` diretamente em páginas de showcase ou playground quando o objetivo for demonstração rápida, não necessariamente publicar um wrapper novo.
-- Só encapsule um componente novo se houver ganho claro de API, tema, consistência ou reuso.
-
-### Organização
-
-- Tokens novos devem entrar em `src/design-system/tokens/*` e, se precisarem estar no runtime CSS, também em `src/styles/tokens.css`.
-- Componentes novos devem seguir o padrão `src/components/ui/<nome>/`.
-- Exports públicos devem ser atualizados em `src/index.ts`.
-- Páginas de showcase devem entrar em `src/app/...` e, se forem navegáveis, também na navegação da sidebar.
-
-### Papel do repositório
-
-Não assuma que este repo já é um pacote NPM consolidado. A própria home comunica intenção de publicação futura, mas o estado atual é de playground/documentação. Mudanças devem respeitar esse estágio e evitar decisões de packaging/distribuição não pedidas.
-
-## Como mexer sem quebrar o modelo atual
-
-### Adicionar ou alterar tokens
-
-Quando a mudança for de design system:
-
-- atualize o token TypeScript em `src/design-system/tokens/*` se ele precisar existir como dado estruturado;
-- atualize `src/styles/tokens.css` se o valor precisar estar disponível como CSS custom property;
-- propague a mudança para `src/design-system/theme/antd-theme.ts` se ela impactar o tema do `Ant Design`;
-- revise páginas de showcase afetadas para refletir o novo comportamento.
-
-### Adicionar um novo componente
-
-Fluxo recomendado:
-
-1. criar o componente em `src/components/ui/<nome>/`;
-2. expor um `index.ts` local, se seguir o padrão dos componentes existentes;
-3. publicar o export em `src/index.ts` se o componente fizer parte da API pública;
-4. criar uma página de demonstração em `src/app/components/<nome>/page.tsx` ou na área mais adequada da navegação;
-5. adicionar a rota correspondente na sidebar em `src/components/layout/Sidebar.tsx` se a página for parte da documentação navegável.
-
-### Quando usar Ant Design direto
-
-Use `Ant Design` diretamente quando:
-
-- o uso for local de uma página de documentação/playground;
-- ainda não houver necessidade de API própria do design system;
-- a abstração adicional só aumentaria custo sem ganho real.
-
-Encapsule em `src/components/ui` quando:
-
-- o componente precisa carregar convenções do design system;
-- o mesmo padrão será reutilizado em mais de um lugar;
-- a API do `Ant Design` precisa ser simplificada ou complementada.
-
-### Publicar algo na superfície pública
-
-Se a intenção é que um token, tema, hook ou componente seja consumido fora do app, registre isso em `src/index.ts`. Se não estiver exportado ali, trate como implementação interna do playground/documentação.
+Se algo necessário não estiver exposto pela superfície pública oficial, isso deve ser tratado como lacuna do Design System, não como convite automático para duplicação local.
 
 ## Validação mínima esperada
 
-Toda mudança relevante deve ser validada com pelo menos:
+Antes de concluir uma mudança de UI em um módulo consumidor, a IA deve validar:
 
-- `npm run build` como baseline obrigatório;
-- `npm run lint` como checagem esperada;
-- revisão visual manual nas rotas afetadas.
+- se usou o componente ou token oficial quando havia cobertura no Design System;
+- se evitou duplicação de padrão visual;
+- se documentou qualquer exceção necessária;
+- se a solução local introduz risco de divergência visual;
+- se o caso deveria ser absorvido pelo Design System.
 
-Observação importante: o script de `lint` existe e deve continuar sendo usado, mas em uma inspeção anterior ele precisou ser observado por aparente demora sem saída imediata. Se isso voltar a acontecer, investigue antes de assumir que a mudança de código foi a causa.
+Além disso, devem ser executadas as validações normais do repositório consumidor, incluindo build, lint, testes e revisão visual das telas afetadas, conforme a stack local.
 
-## Riscos e pegadinhas atuais
+## Cenários de uso esperados
 
-- `README.md` ainda está no template padrão do `Next.js`, então não é fonte confiável de contexto do projeto.
-- A home em `src/app/page.tsx` menciona `Next.js 15`, mas o `package.json` está em `Next 16`. Não replique esse dado sem conferir o arquivo de dependências.
-- O repositório mistura playground, documentação e embrião de pacote. Não trate decisões futuras de distribuição como se já estivessem prontas.
-- Nem todo componente usado nas páginas necessariamente representa uma API pública do design system. A referência oficial da superfície pública é `src/index.ts`.
+### 1. Tela nova
 
-## Baseline atual validado
+A IA deve montar a interface com componentes e tokens do Design System por padrão. Se faltar um elemento, deve primeiro tentar composição e depois registrar a lacuna antes de criar UI paralela.
 
-No estado em que este documento foi criado:
+### 2. Ajuste visual em tela existente
 
-- `npm run build` passa com geração estática das rotas do app;
-- as páginas documentadas incluem introdução, tokens, componentes, tabelas, ícones e playground;
-- o tema global depende de `ThemeProvider`, `AntdRegistry` e `ConfigProvider` no layout raiz.
+A IA deve alinhar a tela ao padrão do Design System, removendo customizações locais desnecessárias quando possível. Não deve corrigir visual com CSS isolado se o problema deveria ser resolvido por componente ou token oficial.
 
-## O que uma IA deve conseguir responder após ler este arquivo
+### 3. Necessidade não coberta pelo Design System
 
-Uma IA ou engenheiro deve conseguir responder, sem explorar o repositório do zero:
+A IA deve reconhecer a lacuna, propor evolução do DS e só aplicar adaptação local mínima se houver bloqueio real de entrega. A solução local não deve virar padrão definitivo silenciosamente.
 
-- o que este projeto é hoje;
-- onde adicionar tokens;
-- onde criar ou encapsular componentes;
-- onde publicar exports públicos;
-- como validar a mudança;
-- quais premissas não devem ser assumidas indevidamente.
+## Checklist operacional para IA
 
-## Próximo ajuste de documentação recomendado
+Antes de encerrar a tarefa, conferir:
 
-Como este arquivo passa a ser a principal fonte de contexto operacional, o passo seguinte recomendado é alinhar o `README.md` para apontar para ele ou absorver uma versão resumida deste conteúdo, evitando documentação conflitante.
+- usei componente do Design System sempre que havia cobertura?
+- reutilizei tokens oficiais em vez de criar estilo paralelo?
+- documentei a exceção, se precisei fugir do Design System?
+- existe risco de divergência visual por causa da solução adotada?
+- essa solução deveria existir no Design System em vez de permanecer no módulo?
+
+## Regra final
+
+Na dúvida, a IA deve favorecer consistência sistêmica sobre velocidade local.
+
+Se houver escolha entre “resolver rápido no módulo” e “manter alinhamento com o Design System”, a decisão padrão deve ser manter alinhamento com o Design System ou registrar claramente por que isso ainda não foi possível.
