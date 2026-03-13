@@ -10,6 +10,26 @@ Use este guia quando você criar um novo repositório de módulo e quiser levar 
 - uma referência local do Design System;
 - regras suficientes para a IA trabalhar mesmo sem acesso à internet.
 
+## Dumb
+
+Copie:
+
+- `plan.md`
+- `src/index.ts`
+- `src/components/ui/`
+- `src/design-system/`
+- `src/styles/tokens.css`
+
+Cole no novo repositório assim:
+
+- `plan.md` -> `plan.md`
+- `src/index.ts` -> `.rockat-ds/src/index.ts`
+- `src/components/ui/` -> `.rockat-ds/src/components/ui/`
+- `src/design-system/` -> `.rockat-ds/src/design-system/`
+- `src/styles/tokens.css` -> `.rockat-ds/src/styles/tokens.css`
+
+Não copie o restante.
+
 ## Estrutura recomendada no repositório consumidor
 
 Ao preparar um módulo novo, a estrutura final recomendada é:
