@@ -5,24 +5,27 @@ import { Button as AntButton, ButtonProps as AntButtonProps } from "antd";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/cn";
 
-const buttonVariants = cva("inline-flex items-center justify-center font-medium transition-all duration-150", {
+const buttonBaseClasses =
+  "inline-flex items-center justify-center ds-button-flat ds-button-premium-transition ds-button-content-align";
+
+const buttonVariants = cva(buttonBaseClasses, {
   variants: {
-    variant: {
-      primary: "",
-      default: "",
-      dashed: "",
-      text: "",
-      link: "",
+    type: {
+      primary: "ds-color-button-primary",
+      default: "ds-color-button-default",
+      dashed: "ds-color-button-dashed",
+      text: "ds-color-button-text",
+      link: "ds-color-button-link",
     },
-    size: {
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-base",
+    antSize: {
+      small: "ds-radius-button-sm ds-text-button-sm ds-space-button-sm",
+      middle: "ds-radius-interactive ds-text-button-md ds-space-button-md",
+      large: "ds-radius-interactive ds-text-button-lg ds-space-button-lg",
     },
   },
   defaultVariants: {
-    variant: "primary",
-    size: "md",
+    type: "primary",
+    antSize: "middle",
   },
 });
 
@@ -38,15 +41,15 @@ export interface ButtonProps
 
 export function Button({
   variant = "primary",
-  size,
   antSize = "middle",
+  danger,
   className,
   type,
   children,
   icon,
   ...props
 }: ButtonProps) {
-  const antType = type ?? (variant as AntButtonProps["type"]);
+  const antType = type ?? (variant as AntButtonProps["type"]) ?? "primary";
 
   // Icon-only: no children, has icon
   const isIconOnly = !!icon && !children;
@@ -56,10 +59,12 @@ export function Button({
       type={antType}
       size={antSize}
       className={cn(
-        buttonVariants({ variant, size }),
+        buttonVariants({ type: antType, antSize }),
+        danger && "ds-color-button-danger",
         className,
-        isIconOnly && "flex items-center justify-center p-0"
+        isIconOnly && "ds-button-icon-only"
       )}
+      danger={danger}
       icon={icon}
       {...props}
     >

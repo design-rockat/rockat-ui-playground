@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test",
+    "test:atomic": "node --test tests/button-atomic.test.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",

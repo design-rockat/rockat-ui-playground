@@ -133,6 +133,50 @@ const contentRules: {
   },
 ];
 
+const hierarchySections: {
+  title: string;
+  description: string;
+  note: string;
+  examples: React.ReactNode;
+}[] = [
+  {
+    title: "Primary",
+    description: "Ação principal da tela ou fluxo. Deve ser única por contexto.",
+    note: "Use para confirmar, salvar, publicar e concluir etapas.",
+    examples: (
+      <Space wrap>
+        <Button type="primary">Salvar alterações</Button>
+        <Button type="primary" icon={<Plus size={16} />}>Criar projeto</Button>
+        <Button type="primary" antSize="large">Continuar</Button>
+      </Space>
+    ),
+  },
+  {
+    title: "Secondary (Outline)",
+    description: "Ações secundárias que acompanham a principal sem competir com ela.",
+    note: "Use para cancelar, voltar, editar ou ações alternativas.",
+    examples: (
+      <Space wrap>
+        <Button type="default">Cancelar</Button>
+        <Button type="default" icon={<Edit size={16} />}>Editar</Button>
+        <Button type="dashed">Adicionar opcional</Button>
+      </Space>
+    ),
+  },
+  {
+    title: "Tertiary",
+    description: "Ações de menor prioridade, normalmente contextuais ou de suporte.",
+    note: "Use para ver detalhes, ajuda, navegação auxiliar e ações leves.",
+    examples: (
+      <Space wrap>
+        <Button type="text">Ver detalhes</Button>
+        <Button type="link">Abrir documentação</Button>
+        <Button type="text" danger>Remover vínculo</Button>
+      </Space>
+    ),
+  },
+];
+
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-10">
@@ -161,6 +205,35 @@ export default function ButtonPage() {
           </code>{" "}
           encapsula o Ant Design Button com os tokens do Rock-at UI.
         </p>
+
+        <div className="mb-10">
+          <h2 className="text-base font-semibold mb-1" style={{ color: "var(--rockat-text)" }}>
+            Hierarquia: Primary, Secondary e Tertiary
+          </h2>
+          <p className="text-sm mb-4" style={{ color: "var(--rockat-text-muted)" }}>
+            Organização recomendada de botões por prioridade de ação.
+          </p>
+          <div className="grid gap-3">
+            {hierarchySections.map((item) => (
+              <div
+                key={item.title}
+                className="p-5 rounded-xl"
+                style={{ border: "1px solid var(--rockat-border)", background: "var(--rockat-bg-elevated)" }}
+              >
+                <p className="text-sm font-semibold mb-1" style={{ color: "var(--rockat-text)" }}>
+                  {item.title}
+                </p>
+                <p className="text-xs mb-1.5" style={{ color: "var(--rockat-text-muted)" }}>
+                  {item.description}
+                </p>
+                <p className="text-xs mb-4" style={{ color: "var(--rockat-accent-text)" }}>
+                  {item.note}
+                </p>
+                {item.examples}
+              </div>
+            ))}
+          </div>
+        </div>
 
         <Section title="Variants">
           <Space wrap>

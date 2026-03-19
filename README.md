@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Atomic Button Foundation
+
+`Button` now follows an atomic dependency chain:
+
+`Button -> ds-* semantic primitives -> CSS tokens`
+
+- Semantic primitives are defined in `src/styles/primitives.css`.
+- Semantic token values are defined in `src/styles/tokens.css`.
+- Button wrapper consumption is in `src/components/ui/button/Button.tsx`.
+- Radius rule: `middle/large = 12px`, with `small = 8px` as the only exception.
+
+Validation:
+
+```bash
+npm run lint
+npm run test:atomic
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

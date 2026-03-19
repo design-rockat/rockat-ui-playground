@@ -1,5 +1,4 @@
 import { colors } from "../tokens/colors";
-import { radius } from "../tokens/radius";
 import { typography } from "../tokens/typography";
 
 export const rockatLightTheme = {
@@ -26,7 +25,12 @@ export const rockatLightTheme = {
   components: {
     Button: {
       borderRadius: 12,
+      borderRadiusSM: 8,
+      borderRadiusLG: 12,
       controlHeight: 40,
+      defaultShadow: "none",
+      primaryShadow: "none",
+      dangerShadow: "none",
     },
     Input: {
       borderRadius: 12,
@@ -62,7 +66,12 @@ export const rockatDarkTheme = {
   components: {
     Button: {
       borderRadius: 12,
+      borderRadiusSM: 8,
+      borderRadiusLG: 12,
       controlHeight: 40,
+      defaultShadow: "none",
+      primaryShadow: "none",
+      dangerShadow: "none",
     },
     Input: {
       borderRadius: 12,

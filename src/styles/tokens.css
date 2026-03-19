@@ -61,6 +61,65 @@
 
   /* Card filled background */
   --rockat-card-filled-bg: #f5f0ff;
+
+  /* Atomic primitives - Button (semantic source of truth) */
+  --ds-radius-interactive: 12px;
+  --ds-radius-button-sm: 8px;
+
+  --ds-typography-button-sm-size: 12px;
+  --ds-typography-button-sm-line-height: 1.3334;
+  --ds-typography-button-md-size: 14px;
+  --ds-typography-button-md-line-height: 1.4286;
+  --ds-typography-button-lg-size: 16px;
+  --ds-typography-button-lg-line-height: 1.5;
+  --ds-typography-button-weight: 500;
+
+  --ds-spacing-button-sm-y: 0px;
+  --ds-spacing-button-sm-x: 7px;
+  --ds-spacing-button-md-y: 0px;
+  --ds-spacing-button-md-x: 15px;
+  --ds-spacing-button-lg-y: 0px;
+  --ds-spacing-button-lg-x: 15px;
+
+  --ds-color-button-primary-text: #ffffff;
+  --ds-color-button-primary-bg: var(--rockat-primary-700);
+  --ds-color-button-primary-border: var(--rockat-primary-700);
+  --ds-color-button-primary-hover-bg: var(--rockat-primary-600);
+  --ds-color-button-primary-hover-border: var(--rockat-primary-600);
+  --ds-color-button-primary-active-bg: var(--rockat-primary-800);
+  --ds-color-button-primary-active-border: var(--rockat-primary-800);
+
+  --ds-color-button-default-text: var(--rockat-text);
+  --ds-color-button-default-bg: var(--rockat-bg-elevated);
+  --ds-color-button-default-border: var(--rockat-border);
+  --ds-color-button-default-hover-text: var(--rockat-primary-600);
+  --ds-color-button-default-hover-border: var(--rockat-primary-100);
+  --ds-color-button-default-active-text: var(--rockat-primary-800);
+  --ds-color-button-default-active-border: var(--rockat-primary-800);
+
+  --ds-color-button-dashed-text: var(--rockat-text);
+  --ds-color-button-dashed-bg: var(--rockat-bg-elevated);
+  --ds-color-button-dashed-border: var(--rockat-border);
+  --ds-color-button-dashed-hover-text: var(--rockat-primary-600);
+  --ds-color-button-dashed-hover-border: var(--rockat-primary-600);
+  --ds-color-button-dashed-active-text: var(--rockat-primary-800);
+  --ds-color-button-dashed-active-border: var(--rockat-primary-800);
+
+  --ds-color-button-text-text: var(--rockat-text);
+  --ds-color-button-text-hover-bg: color-mix(in srgb, var(--rockat-border) 30%, transparent);
+  --ds-color-button-text-active-bg: color-mix(in srgb, var(--rockat-border) 55%, transparent);
+
+  --ds-color-button-link-text: var(--rockat-menu-text);
+  --ds-color-button-link-hover-text: var(--rockat-accent-text);
+  --ds-color-button-link-active-text: var(--rockat-primary-800);
+
+  --ds-color-button-danger-text: var(--rockat-danger-text);
+  --ds-color-button-danger-bg: transparent;
+  --ds-color-button-danger-border: var(--rockat-danger-text);
+  --ds-color-button-danger-hover-bg: color-mix(in srgb, var(--rockat-danger-bg) 55%, transparent);
+  --ds-color-button-danger-hover-border: var(--rockat-danger-text);
+  --ds-color-button-danger-active-bg: color-mix(in srgb, var(--rockat-danger-bg) 80%, transparent);
+  --ds-color-button-danger-active-border: var(--rockat-danger-text);
 }
 
 [data-theme="dark"] {
@@ -100,4 +159,44 @@
 
   /* Card filled background - dark */
   --rockat-card-filled-bg: #350078;
+
+  --ds-color-button-primary-text: #ffffff;
+  --ds-color-button-primary-bg: var(--rockat-primary-500);
+  --ds-color-button-primary-border: var(--rockat-primary-500);
+  --ds-color-button-primary-hover-bg: var(--rockat-primary-400);
+  --ds-color-button-primary-hover-border: var(--rockat-primary-400);
+  --ds-color-button-primary-active-bg: var(--rockat-primary-600);
+  --ds-color-button-primary-active-border: var(--rockat-primary-600);
+
+  --ds-color-button-default-text: var(--rockat-text);
+  --ds-color-button-default-bg: var(--rockat-bg-elevated);
+  --ds-color-button-default-border: var(--rockat-border);
+  --ds-color-button-default-hover-text: var(--rockat-accent-text);
+  --ds-color-button-default-hover-border: var(--rockat-primary-100);
+  --ds-color-button-default-active-text: var(--rockat-primary-300);
+  --ds-color-button-default-active-border: var(--rockat-primary-300);
+
+  --ds-color-button-dashed-text: var(--rockat-text);
+  --ds-color-button-dashed-bg: var(--rockat-bg-elevated);
+  --ds-color-button-dashed-border: var(--rockat-border);
+  --ds-color-button-dashed-hover-text: var(--rockat-accent-text);
+  --ds-color-button-dashed-hover-border: var(--rockat-accent-text);
+  --ds-color-button-dashed-active-text: var(--rockat-primary-300);
+  --ds-color-button-dashed-active-border: var(--rockat-primary-300);
+
+  --ds-color-button-text-text: var(--rockat-text);
+  --ds-color-button-text-hover-bg: color-mix(in srgb, var(--rockat-border) 35%, transparent);
+  --ds-color-button-text-active-bg: color-mix(in srgb, var(--rockat-border) 65%, transparent);
+
+  --ds-color-button-link-text: var(--rockat-menu-text);
+  --ds-color-button-link-hover-text: var(--rockat-accent-text);
+  --ds-color-button-link-active-text: var(--rockat-primary-300);
+
+  --ds-color-button-danger-text: var(--rockat-danger-text);
+  --ds-color-button-danger-bg: transparent;
+  --ds-color-button-danger-border: var(--rockat-danger-text);
+  --ds-color-button-danger-hover-bg: color-mix(in srgb, var(--rockat-danger-bg) 65%, transparent);
+  --ds-color-button-danger-hover-border: var(--rockat-danger-text);
+  --ds-color-button-danger-active-bg: color-mix(in srgb, var(--rockat-danger-bg) 85%, transparent);
+  --ds-color-button-danger-active-border: var(--rockat-danger-text);
 }
