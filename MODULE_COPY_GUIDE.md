@@ -8,6 +8,7 @@ Use este guia quando você criar um novo repositório de módulo e quiser levar 
 
 - o `plan.md`;
 - uma referência local do Design System;
+- instruções de IA para Claude Code e Codex;
 - regras suficientes para a IA trabalhar mesmo sem acesso à internet.
 
 ## Dumb
@@ -19,6 +20,8 @@ Copie:
 - `src/components/ui/`
 - `src/design-system/`
 - `src/styles/tokens.css`
+- `templates/CLAUDE.md`
+- `templates/AGENTS.md`
 
 Cole no novo repositório assim:
 
@@ -27,6 +30,8 @@ Cole no novo repositório assim:
 - `src/components/ui/` -> `.rockat-ds/src/components/ui/`
 - `src/design-system/` -> `.rockat-ds/src/design-system/`
 - `src/styles/tokens.css` -> `.rockat-ds/src/styles/tokens.css`
+- `templates/CLAUDE.md` -> `CLAUDE.md`
+- `templates/AGENTS.md` -> `AGENTS.md`
 
 Não copie o restante.
 
@@ -37,6 +42,8 @@ Ao preparar um módulo novo, a estrutura final recomendada é:
 ```text
 <repo-do-modulo>/
   plan.md
+  CLAUDE.md
+  AGENTS.md
   .rockat-ds/
     src/
       index.ts
@@ -113,6 +120,20 @@ Destino no módulo:
 
 Esse arquivo permite que a IA veja as variáveis CSS oficiais e evite criar uma segunda fonte de verdade para cores, superfícies, bordas e estados visuais.
 
+### 6. Instruções de IA
+
+Origem:
+
+- `templates/CLAUDE.md`
+- `templates/AGENTS.md`
+
+Destino no módulo:
+
+- `CLAUDE.md`
+- `AGENTS.md`
+
+Esses arquivos são lidos automaticamente pelo Claude Code e pelo Codex no início de cada sessão. Garantem que qualquer IA abra o repositório consumidor já sabendo que deve consultar `.rockat-ds/` e `plan.md` antes de criar qualquer interface.
+
 ## O que não precisa copiar
 
 Por padrão, não copie estas partes para o módulo consumidor:
@@ -160,6 +181,8 @@ Se faltar cobertura no Design System:
 Antes de usar a IA no novo repositório, confirme:
 
 - `plan.md` foi copiado para a raiz;
+- `CLAUDE.md` existe na raiz (copiado de `templates/CLAUDE.md`);
+- `AGENTS.md` existe na raiz (copiado de `templates/AGENTS.md`);
 - `.rockat-ds/src/index.ts` existe;
 - `.rockat-ds/src/components/ui/` existe;
 - `.rockat-ds/src/design-system/` existe;
@@ -169,7 +192,9 @@ Antes de usar a IA no novo repositório, confirme:
 
 ## Resultado esperado
 
-Quando esse kit estiver presente no módulo consumidor, você poderá instruir a IA com algo como:
+Quando esse kit estiver presente no módulo consumidor, o `CLAUDE.md` e o `AGENTS.md` serão lidos automaticamente pelo Claude Code e pelo Codex no início de cada sessão — sem precisar instruir a IA manualmente.
+
+Se preferir reforçar, pode usar:
 
 “Antes de criar qualquer interface, leia o `plan.md` e consulte `.rockat-ds/` para usar os componentes, tokens e regras oficiais do Design System.”
 
