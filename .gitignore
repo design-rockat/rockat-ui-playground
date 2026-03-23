@@ -42,3 +42,7 @@ next-env.d.ts
 
 # worktrees
 .worktrees/
+
+# Library build output — not committed
+/dist
+/storybook-static

@@ -36,7 +36,7 @@ const columns: Column<User>[] = [
 
 // ── Meta ─────────────────────────────────────────────────────────────────────
 
-const meta: Meta<typeof Table> = {
+const meta: Meta<typeof Table<User>> = {
   title: 'Components/Table',
   component: Table,
   tags: ['autodocs'],

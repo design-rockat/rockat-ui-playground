@@ -33,14 +33,13 @@ export interface ButtonProps
   extends Omit<AntButtonProps, "type" | "size" | "variant">,
     VariantProps<typeof buttonVariants> {
   type?: AntButtonProps["type"];
-  antSize?: AntButtonProps["size"];
+  antSize?: "small" | "middle" | "large";
   className?: string;
   children?: React.ReactNode;
   icon?: React.ReactNode;
 }
 
 export function Button({
-  variant = "primary",
   antSize = "middle",
   danger,
   className,
@@ -49,7 +48,7 @@ export function Button({
   icon,
   ...props
 }: ButtonProps) {
-  const antType = type ?? (variant as AntButtonProps["type"]) ?? "primary";
+  const antType = type ?? "primary";
 
   // Icon-only: no children, has icon
   const isIconOnly = !!icon && !children;
