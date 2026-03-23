@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --test",
-    "test:atomic": "node --test tests/button-atomic.test.mjs"
+    "test:atomic": "node --test tests/button-atomic.test.mjs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
