@@ -37,3 +37,14 @@ npm run test:atomic
 ## Regras de consumo
 
 Leia `plan.md` para entender como módulos externos devem consumir este Design System.
+
+## Fluxo obrigatório para criar ou atualizar componentes
+
+Use o skill `update-ds-component` sempre que for criar, ajustar ou publicar um componente.
+
+Resumo do fluxo:
+1. Componente → `src/components/ui/<nome>/`
+2. Story → `src/stories/components/<Nome>.stories.tsx`
+3. Exportar em `src/index.ts`
+4. Validar no Storybook (`npm run storybook`)
+5. Publicar: `npm version patch && npm run build:lib && npm publish`

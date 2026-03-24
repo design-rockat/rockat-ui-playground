@@ -26,9 +26,6 @@
     "access": "restricted"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
     "lint": "eslint",
     "test": "node --test",
     "test:atomic": "node --test tests/button-atomic.test.mjs",

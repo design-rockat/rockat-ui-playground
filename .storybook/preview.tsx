@@ -2,7 +2,7 @@ import React from 'react';
 import type { Preview, Decorator } from '@storybook/react';
 import { ConfigProvider, theme as antdTheme } from 'antd';
 import { rockatLightTheme, rockatDarkTheme } from '../src/design-system/theme/antd-theme';
-import '../src/app/globals.css';
+import '../src/styles/globals.css';
 
 const withTheme: Decorator = (Story, context) => {
   const isDark = context.globals.theme === 'dark';
