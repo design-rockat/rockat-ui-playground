@@ -22,20 +22,16 @@ export function useThemeContext() {
   return useContext(ThemeContext);
 }
 
+function getInitialMode(): ThemeMode {
+  if (typeof window === "undefined") return "light";
+  const stored = localStorage.getItem("rockat-theme") as ThemeMode | null;
+  return stored === "light" || stored === "dark" ? stored : "light";
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setMode] = useState<ThemeMode>("light");
-  const [mounted, setMounted] = useState(false);
+  const [mode, setMode] = useState<ThemeMode>(getInitialMode);
 
   useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem("rockat-theme") as ThemeMode | null;
-    if (stored === "light" || stored === "dark") {
-      setMode(stored);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
     localStorage.setItem("rockat-theme", mode);
     document.documentElement.setAttribute("data-theme", mode);
     if (mode === "dark") {
@@ -43,7 +39,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else {
       document.documentElement.classList.remove("dark");
     }
-  }, [mode, mounted]);
+  }, [mode]);
 
   const toggleTheme = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));

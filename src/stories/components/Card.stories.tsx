@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Space } from 'antd';
-import { Star, MoreHorizontal, Heart, Users } from 'lucide-react';
+import { Star, MoreHorizontal, Heart } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
