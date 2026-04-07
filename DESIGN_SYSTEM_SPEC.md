@@ -103,6 +103,31 @@ Recommended usage:
 - When another library cannot use CSS variables directly, preserve the semantic intent and the exact palette values above.
 - Prefer semantic usage over raw palette usage: primary for brand/action, neutral for structure, secondary for supportive emphasis.
 
+#### Border Contract
+
+Global border rule for external implementations:
+
+- Every standard bordered component must use `grey 100` as the default border color.
+- In the current Rock-at token system, `grey 100` maps to `neutral-100`.
+- Canonical value: `#f5f5f5`
+- Canonical token for external documentation intent: `grey-100`
+- Canonical token in the current repo: `--rockat-neutral-100`
+
+Apply this border color by default to:
+
+- outlined cards
+- bordered inputs
+- table outer borders
+- table header separators
+- row separators when a visible divider is needed
+- any other standard surface that exposes a neutral border
+
+Border rule summary:
+
+- If a component has a visible neutral border and no stronger semantic override is required, use `grey 100`.
+- Do not invent different neutral border colors per component.
+- If another library uses a `gray` or `grey` naming scheme, map it to the Rock-at value above.
+
 ### Icons
 
 The standard icon library is `lucide-react`.
@@ -229,6 +254,15 @@ Rules:
 - Use mono only for code-like or technical content.
 - Avoid mixing too many text sizes inside a single compact component.
 
+Typography contract summary for AI consumers:
+
+- Body default must be `16px / 1.5 / 400`.
+- Button text must use `500` weight.
+- Small helper/caption text may use `12px`, but never as the main readable body size.
+- Card titles should default to `20px` with `600` weight when a clear title hierarchy is needed.
+- Section headings should start at `24px` with `600` weight.
+- Page headings should start at `30px` with `700` weight.
+
 ## Components
 
 ## Button
@@ -252,11 +286,32 @@ Communicate and trigger user actions with clear visual hierarchy.
 
 ### Anatomy
 
-- Container
-- Label
-- Optional leading icon
-- Optional loading indicator
-- Optional icon-only presentation
+Required button anatomy:
+
+1. Outer interactive container
+2. Optional leading icon slot
+3. Label/content slot
+4. Optional loading indicator state
+5. Optional icon-only presentation
+
+Anatomy details:
+
+| Part | Required | Rule |
+| --- | --- | --- |
+| Outer container | yes | carries radius, border, background, spacing, and interaction states |
+| Label | no for icon-only, yes otherwise | must remain the primary meaning carrier in standard buttons |
+| Leading icon | optional | icon appears before the label |
+| Loading indicator | optional | replaces or augments the resting state while preserving action meaning |
+| Icon-only content | optional | only valid when the button has an accessible label |
+
+Structural rules:
+
+- The icon sits before the label.
+- The label and icon must be vertically centered.
+- The button must support text-only, icon + text, and icon-only compositions.
+- Icon-only buttons still follow the same radius and border rules as their size/variant combination.
+- The outer container is the source of truth for border radius.
+- Padding belongs to the outer container, not to the icon or label independently.
 
 ### Variants
 
@@ -275,11 +330,22 @@ Notes:
 
 ### Sizes
 
-| Size | Radius | Text size | Horizontal padding | Contract role |
+| Size | Radius | Text size | Font weight | Horizontal padding | Vertical padding | Contract role |
 | --- | --- | --- | --- | --- |
-| `small` | `8px` | `12px` | `7px` | compact actions |
-| `middle` | `12px` | `14px` | `15px` | default |
-| `large` | `12px` | `16px` | `15px` | high-visibility action |
+| `small` | `8px` | `12px` | `500` | `7px` | `0px` | compact actions |
+| `middle` | `12px` | `14px` | `500` | `15px` | `0px` | default |
+| `large` | `12px` | `16px` | `500` | `15px` | `0px` | high-visibility action |
+
+Non-negotiable radius rule for buttons:
+
+- `small` buttons use `8px`.
+- `middle` and `large` buttons use `12px`.
+- If another library exposes only one button radius token, it must still preserve the `small` exception.
+
+Non-negotiable border rule for bordered buttons:
+
+- Bordered neutral buttons must use `grey 100` / `neutral-100` as the default border color.
+- This applies to `default` and `dashed` buttons in their resting bordered state.
 
 ### States
 
@@ -298,6 +364,20 @@ Notes:
 - Standard icon placement is leading, before the text.
 - Icon-only buttons must preserve the same visual hierarchy as labeled buttons.
 - Icon-only buttons must receive an explicit accessible label.
+- Dense button icons should usually be `16px`.
+- Icon-only buttons should not collapse the radius or invent a new border treatment.
+
+### Visual behavior contract
+
+External implementations must preserve these button decisions:
+
+- `primary` is filled and highest emphasis.
+- `default` is bordered and secondary.
+- `dashed` is bordered with dashed stroke treatment.
+- `text` has no visible resting border.
+- `link` behaves like an inline action with no visible resting border.
+- `danger` modifies the visual treatment for destructive intent without changing the sizing contract.
+- `block` only changes width behavior; it does not change radius, typography, or icon rules.
 
 ### Accessibility
 
@@ -327,6 +407,10 @@ import { Plus, Edit } from "lucide-react";
 | Disabled state | `Button.disabled` |
 | Full width | `Button.block` |
 | Icon | `Button.icon` |
+
+Implementation precision note:
+
+- Another AI or implementation tool should be able to build the button contract from this section alone without guessing radius, icon order, border color, typography weight, or size behavior.
 
 ## Input
 
@@ -375,6 +459,12 @@ Input does not currently expose visual variants like button/card. The contract i
 | `small` | compact dense forms |
 | `middle` | default |
 | `large` | high-visibility or touch-friendly forms |
+
+Input radius and border contract:
+
+- Default input radius is `12px`.
+- If a compact small input is intentionally used, `8px` is allowed as the compact exception.
+- Standard input border color must be `grey 100` / `neutral-100`.
 
 ### States
 
@@ -493,6 +583,7 @@ Contract guidance:
 - Use standard component spacing values inside cards.
 - Default surface radius remains `12px`.
 - Card size is determined by container/layout composition, not by a dedicated card size API.
+- Outlined cards must use `grey 100` / `neutral-100` as the border color.
 
 ### States
 
@@ -588,6 +679,7 @@ Contract guidance:
 
 - Preserve `12px` outer surface radius.
 - Use readable cell spacing and maintain scan-friendly density.
+- Use `grey 100` / `neutral-100` for the table outer border and default separators.
 
 ### States
 
@@ -691,6 +783,8 @@ If an AI agent must reproduce Rock-at UI in another module, it should follow the
 2. Use the component contracts in this file before checking the local implementation.
 3. Preserve `12px` as the default radius for standard surfaces and interactive components.
 4. Use `lucide-react` for icons.
-5. Documented table support is limited to `default`, `empty state`, `loading`, and `clickable`.
-6. Password inputs must include a visibility toggle with `Eye` / `EyeOff`, even though the current wrapper does not yet provide that behavior directly.
-7. Do not propagate undocumented patterns such as `tertiary` palette usage or `striped` table as part of the current official contract.
+5. Preserve the button size contract exactly: `small = 8px radius`, `middle/large = 12px radius`, text weight `500`.
+6. Use `grey 100` / `neutral-100` as the default border color for cards, inputs, tables, and other neutral bordered surfaces.
+7. Documented table support is limited to `default`, `empty state`, `loading`, and `clickable`.
+8. Password inputs must include a visibility toggle with `Eye` / `EyeOff`, even though the current wrapper does not yet provide that behavior directly.
+9. Do not propagate undocumented patterns such as `tertiary` palette usage or `striped` table as part of the current official contract.
